@@ -1,0 +1,15 @@
+title
+general description
+images
+3d images
+price
+panorma image
+map url
+location
+bathroom
+bedroom
+garages
+min price and max price
+type
+video
+owner information

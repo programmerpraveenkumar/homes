@@ -1,0 +1,69 @@
+.imageslide{
+    width:250px;height:200px;float:left;
+}
+.form{
+    border:1px solid black;
+    float: left;
+    max-width:75%;
+    min-width: 50%;
+    margin-bottom:5px;
+    clear: both;
+}
+.form .textbox,.form .select,.form .textarea{
+    width: 250px;
+}
+.form .title{
+    color:red;
+    font-size: 20px;
+}
+.form .label{
+    display: inline-block;
+    width: 150px;
+}
+.form .separator{
+    margin:5px;
+    float: left;
+    clear: left;
+    
+}
+.form .select{
+    
+}
+
+.form .submit_btn{
+    width: 150px;padding:10px;
+    
+}
+.form .submitdiv{margin-left: 50px;clear: both;}
+.form .form_error{color:red;}
+.smallfordelete{
+    width:150px;height:150px;
+}
+.grid{
+    float: left;
+    clear: left;
+    border:2px solid #00A8FF;
+}
+.gridrow{
+    border-bottom: 1px solid #21bf64; 
+    
+}
+.grid .gridcell{
+    display: inline-block;
+    width:150px;
+/*    height:20px;*/
+    overflow: auto;
+    border-right:1px solid red;padding:5px; 
+}
+.grid .gridsmall{
+    width:80px;
+}
+.grid  .image{
+    width:150px;height:150px;
+}
+.gridimage{
+    width:150px;height:150px;
+}
+.grid .gridcell .deletebtn{
+    width: 150px;
+}
