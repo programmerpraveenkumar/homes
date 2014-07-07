@@ -148,6 +148,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_build`(in command varchar(55),in
 BEGIN
 if command='add' then
 call executequery('last_id',concat('insert into shop ', commandatext));
+elseif command='select' then
+select id,title from shop;
+elseif command='edit' then
+call executequery('row_id',concat('update shop set ', commandatext));
 end if;
 END ;;
 DELIMITER ;
@@ -165,4 +169,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-07 12:53:26
+-- Dump completed on 2014-07-07 17:11:46
