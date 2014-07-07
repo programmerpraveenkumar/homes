@@ -2,7 +2,7 @@
     class database {
 protected $mysql;
  protected $last_id;
-    private $data=array("user"=>'root','pass'=>'','database'=>'shop','host'=>'localhost');
+    private $data=array("user"=>'root','pass'=>'','database'=>'homes','host'=>'localhost');
 	public function database(){	
             
 		$this->mysql=new mysqli($this->data["host"],$this->data["user"],$this->data["pass"],$this->data["database"]);

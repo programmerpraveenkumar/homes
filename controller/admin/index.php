@@ -25,6 +25,9 @@ class index  extends controller{
     private function _render(){    
         $this->view->render('admin/index');
     }
+    private function storetype(){
+        $this->model->call('admin','storetype');
+    }
 }
 ?>
 
