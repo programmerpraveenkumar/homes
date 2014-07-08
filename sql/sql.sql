@@ -37,7 +37,7 @@ CREATE TABLE `builder` (
   `type` varchar(45) DEFAULT NULL,
   `owner` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +46,7 @@ CREATE TABLE `builder` (
 
 LOCK TABLES `builder` WRITE;
 /*!40000 ALTER TABLE `builder` DISABLE KEYS */;
+REPLACE INTO `builder` VALUES (1,'title','','100','','','','','','',NULL),(2,'title','','500','','','','','','',NULL),(3,'title','','200','','','','','','',NULL),(4,'title','','250','','','','','','',NULL),(5,'title','teting descrption','50','map','location','bathrooom','bedroom','garages','3',NULL),(6,'title','','150','','','','','','',NULL);
 /*!40000 ALTER TABLE `builder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,11 +91,13 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `executequery`(in type varchar(55),in qury text)
 BEGIN
 set @qury=qury;
+-- select @qury;
 prepare qur from @qury;
 execute qur;
+
 if type='result' then
 select row_count() as count,'ok' as result;
-elseif type='lastid' then
+elseif type='last_id' then
 select last_insert_id() as id ,'ok' as result;
 end if;
 END ;;
@@ -147,11 +150,15 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_build`(in command varchar(55),in commandtext text)
 BEGIN
 if command='add' then
-call executequery('last_id',concat('insert into shop ', commandatext));
+call executequery('last_id',concat('insert into builder ', commandtext));
 elseif command='select' then
-select id,title from shop;
+select id,title from builder;
 elseif command='edit' then
-call executequery('row_id',concat('update shop set ', commandatext));
+call executequery('row_id',concat('update builder set ', commandtext));
+elseif command='search' then
+call executequery('execute',concat('select * from builder where ',commandtext ));
+elseif command='get_id' then
+select * from builder where id=commandtext;
 end if;
 END ;;
 DELIMITER ;
@@ -169,4 +176,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-07 17:11:46
+-- Dump completed on 2014-07-08 17:27:35
