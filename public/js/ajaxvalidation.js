@@ -99,8 +99,8 @@
                     loader.show('loading......');
                     form=document.forms[formdetails['name']];                   
                     parentForm=form;					
-                    for(elements  in ele){               
-                        if(ele[elements]['1']=='ajax'){      
+                    for(elements  in ele){                                       
+                        if(ele[elements]['1']=='ajax'){                              
                             if(formdetails['type']!='ajax'){
                                loader.formsubmit();
                                 return false;

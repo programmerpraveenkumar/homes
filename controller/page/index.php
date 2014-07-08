@@ -9,8 +9,8 @@ class index extends controller{
             $this->initial();
         } 
 }
-    private function initial(){
-        //$this->view->data=$this->model->call('user','index');
+    private function initial(){        
+    //$this->view->data=$this->model->call('user','index');
         $this->view->render('user/index');
     }
     private function listt(){

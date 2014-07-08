@@ -19,7 +19,7 @@ class build extends controller{
         $this->_localrender();
     }
     public function addstore(){
-        $this->model->call('build','add');
+        $this->model->call('build','buildstore');
     }
     public function edit(){   
         

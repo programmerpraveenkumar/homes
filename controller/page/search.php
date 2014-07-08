@@ -15,7 +15,7 @@ class search extends controller{
         $this->view->render('page/search');
     }
     private function productalone(){
-        $this->view->data=$this->model->call('shop','getproductalone');       
+        $this->view->data=$this->model->call('build','getproductalone');       
         $this->view->render('page/product');
     }
     

@@ -46,7 +46,9 @@ protected $mysql;
         protected function DB_adminredirect($url){
             header("location:".ADMIN.$url);
         }
-        
+        protected  function moveImage($path,$srcImage){
+            move_uploaded_file($srcImage,'photo/'.$path);
+        }
         protected function DB_refreshdata($data){
             $tmp='';
             foreach($data as $obj  =>$val){
