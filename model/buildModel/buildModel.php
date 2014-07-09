@@ -44,11 +44,16 @@ class buildModel extends database{
      $data.=$this->_formfield(array("type"=>"select","name"=>"type","label"=>"Select Type","value"=>$this->_getType()));
      $data.=$this->_formfield(array("type"=>"textarea","name"=>"description","label"=>"Description"));
      $data.=$this->_formfield(array("type"=>"button","name"=>"submit","value"=>"Store"));          
-      $form='<form name="" class="form"/>'.$data.'</form>';
+      $form='<form name="" action="'.ADMIN.'build/addstore" class="form"/>'.$data.'</form>';
         return array("title"=>"Building add Form" ,"data"=>$form);
     }
     private function _getType(){
       return  $this->buildDriver()->option();
+    }
+    public function buildstore(){
+            $data=$this->DB_refreshdata($_POST);
+            $res=$this->onefetchstoredProcedure("sp_build('add','(title,price,bathroom,bedroom,garages,type,description)values(\'$data[title]\',\'$data[price]\',\'$data[bedroom]\',\'$data[bathroom]\',\'$data[garages]\',\'$data[type]\',\'$data[description]\')')");                
+            print_R($res);
     }
     
 }
