@@ -1,4 +1,6 @@
-<?php require 'include/page/header.php'; ?>
+<?php require 'include/page/header.php'; 
+$video='www.youtube.com/embed/rtsHlYO6TUc';
+?>
 		<header id="banner">
 			<div id="banner_container" class="container">
 				<h3 class="banner-title">Properties Listing</h3>
@@ -62,6 +64,11 @@
 									<div id="the_map" class="map-wrap clearfix">
 										<span class="map-label">Property Map</span>
 										<div id="property_map"></div>
+									</div>
+								</div>
+                                                            <div class="single-property-map">
+									<div id="the_map" class="map-wrap clearfix">
+                                                                            <iframe width="420" height="345" src="//<?php echo $video ?>"></iframe>
 									</div>
 								</div>
 								<!-- Modal -->

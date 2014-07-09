@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `homes` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `homes`;
--- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: homes
 -- ------------------------------------------------------
@@ -47,7 +47,7 @@ CREATE TABLE `builder` (
 
 LOCK TABLES `builder` WRITE;
 /*!40000 ALTER TABLE `builder` DISABLE KEYS */;
-INSERT INTO `builder` VALUES (1,'title','','100','','kk nagar','','','','',NULL,NULL),(2,'title','','500','','central','','','','',NULL,NULL),(3,'title','testing description','200','','theppakulam','45','56','4','',NULL,'250'),(4,'title','','250','','kumar','','','','',NULL,NULL),(5,'title','teting descrption','50','map','location','bathrooom','bedroom','garages','3',NULL,NULL),(6,'title','testing descrution','150','','theppakulam','17','20','2','',NULL,'1500'),(7,'title','TETSINGG','price','MAP','location','bathroom','bedroom','GrGES','5',NULL,NULL);
+REPLACE INTO `builder` VALUES (1,'title','testing description','100','','kk nagar','10','15','2','5',NULL,'1500'),(2,'title','','500','','central','','','','',NULL,NULL),(3,'title','testing description','200','','theppakulam','45','56','4','',NULL,'250'),(4,'title','','250','','kumar','','','','',NULL,NULL),(5,'title','teting descrption','50','map','location','2','5','garages','3',NULL,NULL),(6,'title','testing descrution','150','','theppakulam','17','20','2','',NULL,'1500'),(7,'title','TETSINGG','price','MAP','location','4','3','GrGES','5',NULL,NULL);
 /*!40000 ALTER TABLE `builder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,9 +72,112 @@ CREATE TABLE `type` (
 
 LOCK TABLES `type` WRITE;
 /*!40000 ALTER TABLE `type` DISABLE KEYS */;
-INSERT INTO `type` VALUES (5,'asdf'),(4,'asdf]'),(3,'praveen'),(6,'pravee]'),(1,'test');
+REPLACE INTO `type` VALUES (5,'asdf'),(4,'asdf]'),(3,'praveen'),(6,'pravee]'),(1,'test');
 /*!40000 ALTER TABLE `type` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'homes'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `executequery` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `executequery`(in type varchar(55),in qury text)
+BEGIN
+set @qury=qury;
+-- select @qury;
+prepare qur from @qury;
+execute qur;
+
+if type='result' then
+select row_count() as count,'ok' as result;
+elseif type='last_id' then
+select last_insert_id() as id ,'ok' as result;
+end if;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_admin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_admin`(in command varchar(55),in commandtext text)
+BEGIN
+if command='addtype' then
+select count(id) into @res  from type where content=commandtext;
+if @res=0 then
+insert ignore into type(content)values(commandtext);
+select 'ok' as result;
+else
+select 'exist' as result;
+end if;
+elseif command='select_type' then
+select id,content from type;
+elseif command='update_type' then
+call executequery('result',concat('update type set ',commandtext));
+end if;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_build` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_build`(in command varchar(55),in commandtext text)
+BEGIN
+if command='add' then
+call executequery('last_id',concat('insert into builder ', commandtext));
+elseif command='select' then
+select id,title from builder;
+elseif command='edit' then
+call executequery('row_id',concat('update builder set ', commandtext));
+elseif command='search' then
+call executequery('execute',concat('select * from builder where ',commandtext ));
+elseif command='get_id' then
+select * from builder where id=commandtext;
+elseif command='indexpage' then
+create temporary table if not exists data(
+location varchar(100),
+type varchar(100)
+);
+truncate data;
+insert into data(type)(select content from type);
+insert into data(location)(select distinct(location) from builder);
+select * from data;
+elseif command='recent' then
+select * from builder limit 0,8;
+end if;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -85,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-09  7:59:12
+-- Dump completed on 2014-07-09 18:11:42
