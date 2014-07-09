@@ -2,8 +2,11 @@
 class photo extends controller{
     private $_fileName,$_no;
         public function __construct($url){
+            die('lkdsj');
             parent::__construct();
             $this->_no='photo/no.jpg';
+            
+            
                     if($this->checkmethodexists($this, $url)){
                         $this->$url[2]();
                     }
@@ -30,6 +33,9 @@ class photo extends controller{
                             $this->_fileName=$this->_no;
                     }
                     echo file_get_contents($this->_fileName);//            die();
+        }
+        public function index(){            
+
         }
 }
 ?>

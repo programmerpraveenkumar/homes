@@ -31,5 +31,10 @@ class build extends controller{
     private function _localrender() {
         $this->view->render('admin/index');
     }
+    public function editlist(){
+        $this->view->data=$this->model->call('admin','buildinglist');
+        $this->_localrender();
+    }
+
 }
 ?>

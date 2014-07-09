@@ -46,7 +46,9 @@ protected $mysql;
         protected function DB_adminredirect($url){
             header("location:".ADMIN.$url);
         }
-        
+        protected  function moveImage($path,$srcImage){
+            move_uploaded_file($srcImage,'photo/'.$path);
+        }
         protected function DB_refreshdata($data){
             $tmp='';
             foreach($data as $obj  =>$val){
@@ -132,9 +134,17 @@ protected $mysql;
 		</html>";
                  $result = @mail($mailid,"Enqiry from Client",$message,$headers);
     }
-    public function DB_getscandir($dir){
-                        return array_values(array_diff(scandir($dir),array('.','..')));
+    public function DB_getscandir($dir){   
+        if(file_exists($dir)){            
+            return array_values(array_diff(scandir($dir),array('.','..')));
+          
+        }
+        else
+            die('directory is not exists');
     }    
+    public function db_photoscandir($path){        
+        return $this->DB_getscandir('photo/'.$path);
     }
+ }
 ?>
 

@@ -10,15 +10,22 @@ class search extends controller{
         }
     }
     private function initial(){
+//        print_r($_GET);
         //call sp_product('product_search','testw')
-        $this->view->data=$this->model->call('shop','searchproduct');
-        $this->view->render('page/search');
+        $this->view->data=$this->model->call('build','search');
+        $this->localRender();
     }
     private function productalone(){
-        $this->view->data=$this->model->call('shop','getproductalone');       
-        $this->view->render('page/product');
+        $this->view->data=$this->model->call('build','getprocuctalone');       
+                $this->localRender();
+    }
+    private function alone(){
+        $this->view->data=$this->model->call('build','getprocuctalone');       
+        $this->view->render('user/single');
+    }
+    private function localRender(){
+        $this->view->render('user/search');
     }
     
 }
 ?>
-

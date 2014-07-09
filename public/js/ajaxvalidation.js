@@ -99,8 +99,8 @@
                     loader.show('loading......');
                     form=document.forms[formdetails['name']];                   
                     parentForm=form;					
-                    for(elements  in ele){               
-                        if(ele[elements]['1']=='ajax'){      
+                    for(elements  in ele){                                       
+                        if(ele[elements]['1']=='ajax'){                              
                             if(formdetails['type']!='ajax'){
                                loader.formsubmit();
                                 return false;
@@ -128,4 +128,21 @@
               }
             }
 
-
+function search_(){
+    var search=document.forms['search'];
+   // alert(search['location'].value);
+   data=['location','min','max'];
+   val={'location':"location",'min':"minimum price",'max':"Maximum price"};
+   for(dat in data){
+       if(search[data[dat]].value==''){
+              alert('Please select '+val[data[dat]]);
+              return false;
+       }
+   }
+   if(search['location'].value==''){
+       alert('Please select the location');
+       return false;
+   }
+    search.submit();
+    return FALSE;
+}

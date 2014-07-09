@@ -20,6 +20,10 @@ class adminModel extends database{
     public function edit(){
         
     }
+     public function buildinglist(){
+    
+        return array("title"=>"title of the page    ","data"=>"data of the page");
+    }
     public function storetype(){
      $data=$this->DB_refreshdata($_POST);
      $res=$this->onefetchstoredProcedure("sp_admin('addtype','$data[type]]')");     

@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `homes` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `homes`;
--- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.11, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: homes
 -- ------------------------------------------------------
@@ -36,8 +36,10 @@ CREATE TABLE `builder` (
   `garages` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   `owner` text,
+  `area` varchar(55) DEFAULT NULL,
+  `video` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +48,7 @@ CREATE TABLE `builder` (
 
 LOCK TABLES `builder` WRITE;
 /*!40000 ALTER TABLE `builder` DISABLE KEYS */;
+INSERT INTO `builder` VALUES (1,'title','testing description','100','','kk nagar','10','15','2','5',NULL,'1500',NULL),(2,'title','','500','','central','','','','',NULL,NULL,NULL),(3,'title','testing description','200','','theppakulam','45','56','4','',NULL,'250','www.youtube.com/embed/Vv64kMM9-tU'),(4,'title','','250','','kumar','','','','',NULL,NULL,NULL),(5,'title','teting descrption','50','map','location','2','5','garages','3',NULL,NULL,NULL),(6,'title','testing descrution','150','','theppakulam','17','20','2','',NULL,'1500',NULL),(7,'title','TETSINGG','price','MAP','location','4','3','GrGES','5',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `builder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +73,7 @@ CREATE TABLE `type` (
 
 LOCK TABLES `type` WRITE;
 /*!40000 ALTER TABLE `type` DISABLE KEYS */;
-REPLACE INTO `type` VALUES (5,'asdf'),(4,'asdf]'),(3,'praveen'),(6,'pravee]'),(1,'test');
+INSERT INTO `type` VALUES (5,'asdf'),(4,'asdf]'),(3,'praveen'),(6,'pravee]'),(1,'test');
 /*!40000 ALTER TABLE `type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,11 +93,13 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `executequery`(in type varchar(55),in qury text)
 BEGIN
 set @qury=qury;
+-- select @qury;
 prepare qur from @qury;
 execute qur;
+
 if type='result' then
 select row_count() as count,'ok' as result;
-elseif type='lastid' then
+elseif type='last_id' then
 select last_insert_id() as id ,'ok' as result;
 end if;
 END ;;
@@ -147,11 +152,26 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_build`(in command varchar(55),in commandtext text)
 BEGIN
 if command='add' then
-call executequery('last_id',concat('insert into shop ', commandatext));
+call executequery('last_id',concat('insert into builder ', commandtext));
 elseif command='select' then
-select id,title from shop;
+select id,title from builder;
 elseif command='edit' then
-call executequery('row_id',concat('update shop set ', commandatext));
+call executequery('row_id',concat('update builder set ', commandtext));
+elseif command='search' then
+call executequery('execute',concat('select * from builder where ',commandtext ));
+elseif command='get_id' then
+select * from builder where id=commandtext;
+elseif command='indexpage' then
+create temporary table if not exists data(
+location varchar(100),
+type varchar(100)
+);
+truncate data;
+insert into data(type)(select content from type);
+insert into data(location)(select distinct(location) from builder);
+select * from data;
+elseif command='recent' then
+select * from builder limit 0,8;
 end if;
 END ;;
 DELIMITER ;
@@ -169,4 +189,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-07 17:11:46
+-- Dump completed on 2014-07-10  5:28:42
