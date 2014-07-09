@@ -92,7 +92,7 @@ class buildModel extends database{
     }
     /*client side*/
     public function search(){
-        $_GET=array("location"=>"theppakulam","min"=>"150","max"=>"200");
+       // $_GET=array("location"=>"theppakulam","min"=>"150","max"=>"200");
         $data=$_GET;        
         $res=$this->storedProcedure("sp_build('search','location=\'$data[location]\' and price between $data[min] and $data[max]')");
         while($data=$res->fetch_object()){
@@ -101,7 +101,7 @@ class buildModel extends database{
 									<div class="listing-image span5">
 										<div class="property-image-container">
 											<a href="'.$path.'" title="'.$data->title.'">
-												<img width="540" height="360" src="http://localhost/homes/public/uploads/photodune-1207106-american-house-m-540x360.jpg" class="attachment-real-property-loop wp-post-image" alt="Florida 5, Pinecrest, FL" title="Florida 5, Pinecrest, FL">
+												<img width="540" height="360" src="'.PAGE_PATH.'photo/index/?id='.$data->id.'" class="attachment-real-property-loop wp-post-image" alt="Florida 5, Pinecrest, FL" title="Florida 5, Pinecrest, FL">
 											</a>
 										</div><!-- /.property-images-container -->
 										<div class="listing-meta">
@@ -136,15 +136,41 @@ class buildModel extends database{
 									<div class="property-status status-35-text">For Sale</div>
 								</div>';
         }
-return array("search"=>$this->_tmp);
-    //    die();
+    return array("search"=>$this->_tmp);    
+    }
+    private function getImages($type,$id){
+        $type_stack=array("floor","images");
+        if(in_array($type,$type_stack)){
+              $total=count($this->db_photoscandir($type.'/'.$id.'/'));            
+              for($i=0;$i<$total;$i++){
+                  
+              }
+        }
+        else{
+            die('folder is not available');
+            return '';
+        }
     }
     public function getprocuctalone(){
       $id=$_GET[id];
       $res=$this->onefetchstoredProcedure("sp_build('get_id','$id')");  
-      return $res;
-      //print_r($res);
-      //die('end get product alone');
+      //$this->getImages('floor',$id);      
+      return (array)$res;
+    }
+
+    public function index(){        
+        $data=array();
+        $res=$this->storedProcedure("sp_build('indexpage','')");
+        while($db_data=$res->fetch_object()){
+           
+           
+            if(!empty($db_data->location))
+                $data['location'].='<option>'.$db_data->location.'</option>';
+            if(!empty($db_data->type))
+                $data['type'].='<option>'.$db_data->type.'</option>';                
+        }
+        
+        return $data;      
     }
     
 }

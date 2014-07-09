@@ -52,12 +52,10 @@
 	<script type='text/javascript' src='<?php  echo INCLUDE_FILE ?>js/respond.min.js'></script>
     <script type="text/javascript">
 	function test(){
-		var total=document.getElementsByTagName("img");
-		for(start=0;start<total.length;start++){
-			
-			total[start].src="<?php  echo INCLUDE_FILE ?>"+total[start].getAttribute('src');
-		}
-		
+            var total=document.getElementsByTagName("img");
+            for(start=0;start<total.length;start++){			
+                total[start].src="<?php  echo INCLUDE_FILE ?>"+total[start].getAttribute('src');
+            }		
 	}		
 	test();
 	</script>

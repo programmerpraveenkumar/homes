@@ -29,4 +29,3 @@ class search extends controller{
     
 }
 ?>
-

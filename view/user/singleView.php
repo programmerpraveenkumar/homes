@@ -1,4 +1,6 @@
 <?php require 'include/page/header.php'; ?>
+<?php // print_r($this->data);
+//die('');     ?>
 <body>
 	<div class="container-full">
 		<header id="header" role="banner">
@@ -37,8 +39,8 @@
 													<li id="menu-item-1875" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1875"><a href="homepage-2.html">Homepage 2</a></li>
 												</ul>
 											</li>
-											<li id="menu-item-1866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1866"><a href="property-listings-list.html">Property Listing</a></li>
-											<li id="menu-item-1649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-1649"><a class="dropdown-toggle" href="property-listings-grid.html">Property Types</a>
+											<li id="menu-item-1866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1866"><a href="property-listings-list.html"><?php if(isset($this->data['title']))echo $this->data['title'] ?></a></li>
+											<li id="menu-item-1649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-1649"><a class="dropdown-toggle" href="property-listings-grid.html"><?php if(isset($this->data['location']))echo $this->data['location'] ?></a>
 												<ul class="dropdown-menu">
 													<li id="menu-item-1867" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1867"><a href="#">Apartments</a></li>
 													<li id="menu-item-1868" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1868"><a href="#">Bungalows</a></li>
@@ -100,7 +102,7 @@
 										<div class='item active'><img src='uploads/photodune-757329-living-room-m-870x350.jpg' width='870' height='350' alt='' /></div>
 										<div class='item '><img src='uploads/photodune-848938-modern-kitchen-interior-m-870x350.jpg' width='870' height='350' alt='' /></div>
 										<div class='item '><img src='uploads/photodune-1288999-house-interior-m-870x350.jpg' width='870' height='350' alt='' /></div>
-										<div class='item '><img src='uploads/photodune-2086373-modern-house-interior-m1-870x350.jpg' width='870' height='350' alt='' /></div>
+										<div class='item '><img src='uploads/photodune-5129397-modern-bedroom-l1-870x350.jpg' width='870' height='350' alt='' /></div>
 										<div class='item '><img src='uploads/photodune-2086373-modern-house-interior-m1-870x350.jpg' width='870' height='350' alt='' /></div>
 									</div>
 									<div class="carousel-thumbnail">
@@ -117,28 +119,29 @@
 								  </div>
 								</div>
 							</div><!-- /#property_slider_wrapper -->
+                                                        
 							<div id="single_property_meta_wrapper">
 								<div class="single-property-meta clearfix status-35-text">
-									<span class="meta-size"><i class="ico-size"></i><?php echo $this->data['area'] ?>M</span>
-									<span class="meta-bedroom"><i class="ico-bedroom"></i><span class="meta-hidden"> Bedrooms</span></span>
-									<span class="meta-bathroom"><i class="ico-bathroom"></i><?php //echo $this->data['bathroom'] ?><span class="meta-hidden"> Bathrooms</span></span>
-									<span class="meta-garage"><i class="ico-garage"></i><?php //echo $this->data['garages'] ?><span class="meta-hidden"> Garages</span></span>
+									<span class="meta-size"><i class="ico-size"></i><?php if(isset($this->data['area']))echo $this->data['area'] ?>M</span>
+									<span class="meta-bedroom"><i class="ico-bedroom"></i><?php if(isset($this->data['bedroom']))echo $this->data['bedroom'] ?><span class="meta-hidden"> Bedrooms</span></span>
+									<span class="meta-bathroom"><i class="ico-bathroom"></i><?php if(isset($this->data['bathroom']))echo $this->data['bathroom'] ?><span class="meta-hidden"> Bathrooms</span></span>
+									<span class="meta-garage"><i class="ico-garage"></i><?php if(isset($this->data['garages']))echo $this->data['garages'] ?><span class="meta-hidden"> Garages</span></span>
 									<span class="meta-print visible-desktop"><i class="ico-print"></i>
-								<span class="print-hidden"><a href="javascript:window.print()">Print this page</a></span>
+										<span class="print-hidden"><a href="javascript:window.print()">Print this page</a></span>
 									</span>
 									<span class="meta-status">For Sale</span>
 								</div>
 							</div>
 							<div class="single-property-content-wrapper">
 								<header class="single-property-header">
-									<h3 class="single-property-title"><?php echo $this->data['title']; ?></h3>
-									<p class="single-property-address"><?php echo $this->data['location']; ?></p>
+									<h3 class="single-property-title"><?php if(isset($this->data['title']))echo $this->data['title'] ?></h3>
+									<p class="single-property-address"><?php if(isset($this->data['location']))echo $this->data['location'] ?></p>
 								</header>
 								<div class="single-property-price">
-									<p><h3><sup class="price-curr">Rs</sup><?php echo $this->data['price'] ?>&nbsp;<span class="price-postfix"></span></h3></p>
-							</div>
-                                                                  <p><?php echo $this->data['description'] ?></p>
-			
+									<p><h3><sup class="price-curr">Rs</sup><?php if(isset($this->data['price']))echo $this->data['price'] ?>&nbsp;<span class="price-postfix"></span></h3></p>
+								</div>
+								<div class="single-property-content">
+                                                                    <p><?php if(isset($this->data['description']))echo $this->data['description'] ?></p>
 								</div>
 								<div class="single-property-map">
 									<div id="the_map" class="map-wrap clearfix">
@@ -173,16 +176,7 @@
 						</article>
 					</section><!-- #content -->
 					<section id="sidebar" class="span3" role="complementary">
-						<aside id="property_agent-2" class="widget property-agent">
-							<h3 class="widget-title">Agent Info</h3>
-							<div class="content-widget"><img width="150" height="150" src="uploads/agent-john-due-150x150.jpg" class="alignleft agent-widget wp-post-image" alt="agent-john-due" />
-							<div class="agent-widget-name">Julianne Hough</div>
-							<div class="agent-widget-phone"><i class="icon-phone"></i>+215 (800) 4567</div>
-							<div class="agent-widget-email"><i class="icon-envelope"></i>agent@envato.com</div>
-							<div class="clear"></div>
-							<div class="agent-widget-excerpt">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidu</div><p>&nbsp;</p>
-							<div class="agent-desc"><a role="button" data-toggle="modal" class="button button-search-widget" href="#contactAgent">Contact Agent</a></div></div><!-- /.content-widget -->
-						</aside>
+						
 						<aside id="property-search-widget-2" class="widget widget-property-search">
 							<h3 class="widget-title">Property Search</h3>
 							<div class="content-widget">
@@ -293,22 +287,7 @@
 								</form>
 							</div><!-- /.content-widget -->
 						</aside>
-						<aside id="wolf-twitter-widget-3" class="widget wolf-twitter-widget">
-							<h3 class="widget-title">Twitter Feed</h3>
-							<div class="content-widget">
-								<ul class="wolf-tweet-list">
-									<li>
-										<span class="wolf-tweet-time"><a href="#" target="_blank">about 7 hours  ago</a></span><span class="wolf-tweet-text">One of the best parts of <a href="#" target="_blank">#Movember</a>: seeing Bricey from <a href="#" target="_blank">#Envato</a> HQ dressed as Magnum P.I. @ Envato <a href="#" target="_blank">http://t.co/rkQK2JXaj7</a></span>
-									</li>
-									<li>
-										<span class="wolf-tweet-time"><a href="#" target="_blank">about 3 days  ago</a></span><span class="wolf-tweet-text">RT <a href="#" target="_blank">@justinfrench</a>: Envato is looking for a Front End Developer. Help us make all the things awesome. <a href="h#" target="_blank">http://t.co/XSvEjwFSDb</a></span>
-									</li>
-									<li>
-										<span class="wolf-tweet-time"><a href="#" target="_blank">about 3 days  ago</a></span><span class="wolf-tweet-text">RT <a href="#" target="_blank">@tutsplus</a>: We've just launched our brand new Tuts+ Blog! Read on for insight into the thoughts and people behind Tuts+ - <a href="#" target="_blank">http://t.co/vM6…</a></span>
-									</li>
-								</ul>
-							</div><!-- /.content-widget -->
-						</aside>
+						
 					</section><!-- #sidebar -->
 				</div><!-- /#main -->
 				<div class="single-property-related ">

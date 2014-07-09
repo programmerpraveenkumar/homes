@@ -106,31 +106,18 @@
 										<div class="option-bar type">
 												<span class="selectwrap">
 													<select name="location" id="select-type" class="search-select">
-													<option value="apartments">Apartments</option>
-                                                                                                        <option value="bungalows">Bungalows</option>
-                                                                                                        <option value="condominium">Condominium</option>
-                                                                                                        <option value="villas">Villas</option>
+													<?php if(isset($this->data['location']))echo $this->data['location']; ?>
                                                                                                         <option value="any" selected="selected">Select Location</option>
                                                                                                         </select>
 												</span>
 											</div>	
                                                                                     
 											
+																						
 											<div class="option-bar min-price">
 												<span class="selectwrap">
-													<select name="real_type" id="select-type" class="search-select">
-													<option value="apartments">Apartments</option>
-                                                                                                        <option value="bungalows">Bungalows</option>
-                                                                                                        <option value="condominium">Condominium</option>
-                                                                                                        <option value="villas">Villas</option>
-                                                                                                        <option value="any" selected="selected">Select Type</option>
-                                                                                                        </select>
-												</span>
-											</div>											
-											<div class="option-bar min-price">
-												<span class="selectwrap">
-													<select name="min_price" id="select-min-price" class="search-select">
-														<option value="1000">$1,000</option>
+													<select name="min" id="select-min-price" class="search-select">
+														<option value="150">$150</option>
 														<option value="5000">$5,000</option>
 														<option value="10000">$10,000</option>
 														<option value="50000">$50,000</option>
@@ -154,8 +141,8 @@
 											</div>
 											<div class="option-bar max-price">
 												<span class="selectwrap">
-													<select name="max_price" id="select-max-price" class="search-select">
-														<option value="5000">$5,000</option>
+													<select name="max" id="select-max-price" class="search-select">
+														<option value="200">$200</option>
 														<option value="10000">$10,000</option>
 														<option value="50000">$50,000</option>
 														<option value="100000">$100,000</option>
@@ -669,4 +656,4 @@
 				</div>
 			</div><!-- /.footer-widget-wrapper -->
 		</section><!-- #footer_widgets -->
-	
+	<?php require 'include/page/footer.php'; ?>
