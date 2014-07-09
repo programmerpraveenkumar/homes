@@ -57,7 +57,7 @@
                 total[start].src="<?php  echo INCLUDE_FILE ?>"+total[start].getAttribute('src');
             }		
 	}		
-	test();
+	//test();
 	</script>
 </body>
 </html>

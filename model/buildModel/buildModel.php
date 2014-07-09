@@ -169,9 +169,39 @@ class buildModel extends database{
             if(!empty($db_data->type))
                 $data['type'].='<option>'.$db_data->type.'</option>';                
         }
-        
+        $data['recent']=$this->_recent();
         return $data;      
     }
-    
+    private function _recent(){
+        $this->DB_freeResult();
+        
+        $data=$this->storedProcedure("sp_build('recent','')");        
+        while($res=$data->fetch_object()){
+            $path=PAGE_PATH.'search/alone?id='.$res->id;
+            $this->_tmp.='<div class="span3">
+						<article class="property-item">
+							<div class="property-images">
+								<a href="'.$path.'" title="'.$res->title.'">
+									<img width="540" height="360" src="'.PAGE_PATH.'photo/index/?id='.$res->id.'" class="status-35 wp-post-image" alt="'.$res->title.'" /></a>
+								<div class="property-status status-35-text">On Sale</div>
+							</div><!-- /.property-images -->
+							<div class="property-attribute">
+								<h3 class="attribute-title"><a href="'.$path.'" title="'.$res->title.'"></a><i class="icon-heart"></i></h3>
+								<span class="attribute-city">'.$res->location.'</span>
+								<div class="attribute-price">
+									<span class="attr-pricing"><sup class="price-curr">$</sup>'.$res->price.'</span>
+								</div>
+							</div>
+							<div class="property-meta clearfix">
+								<div class="meta-size meta-block"><i class="ico-size"></i><span class="meta-text">'.$res->area.'M</span></div>
+								<div class="meta-bedroom meta-block"><i class="ico-bedroom"></i><span class="meta-text">'.$res->bedroom.'</span></div>
+								<div class="meta-bathroom meta-block"><i class="ico-bathroom"></i><span class="meta-text">'.$res->bathroom.'</span></div>
+							</div>
+						</article>
+					</div> ';
+        }
+        return $this->_tmp;
+       
+    }
 }
 ?>
