@@ -89,38 +89,100 @@
 			</div>
 		</header>
 		<div class="content-wrapper clearfix">
-			<div id="title-listing" class="container">
-				<div class="property-list-title">Properties Listing</div>
-				<div class="property-list-by">
-					<a class="current" href="#">All</a>
-					<a class="" href="#">Apartments</a>
-					<a class="" href="#">Bungalows</a>
-					<a class="" href="#">Condominium</a>
-					<a class="" href="#">Villas</a>
-				</div>
-			</div><!-- /#title-listing -->
 			<div class="container"><!-- container via hooks -->
 				<div id="main" class="row-fluid">
 					<section  id="content" class="span9" role="main">
-						<div id="archive-wrapper">
-							<div class="property-sort">
-								
-								
+						<article class="post-56 property type-property status-publish hentry clearfix" id="property-56">
+							<div id="property_slider_wrapper">
+								<div id="myCarousel" class="carousel slide">
+									<!-- Carousel items -->
+									<div class="carousel-inner">
+										<div class='item active'><img src='uploads/photodune-757329-living-room-m-870x350.jpg' width='870' height='350' alt='' /></div>
+										<div class='item '><img src='uploads/photodune-848938-modern-kitchen-interior-m-870x350.jpg' width='870' height='350' alt='' /></div>
+										<div class='item '><img src='uploads/photodune-1288999-house-interior-m-870x350.jpg' width='870' height='350' alt='' /></div>
+										<div class='item '><img src='uploads/photodune-2086373-modern-house-interior-m1-870x350.jpg' width='870' height='350' alt='' /></div>
+										<div class='item '><img src='uploads/photodune-2086373-modern-house-interior-m1-870x350.jpg' width='870' height='350' alt='' /></div>
+									</div>
+									<div class="carousel-thumbnail">
+										<!-- Carousel nav -->
+										<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+										<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+										<ol class="carousel-indicators hidden-phone">
+											<li data-target='#myCarousel' data-slide-to='0' class='active'><img src='uploads/photodune-757329-living-room-m-80x80.jpg' width='80' height='80' alt='' /></li>
+											<li data-target='#myCarousel' data-slide-to='1' class=''><img src='uploads/photodune-848938-modern-kitchen-interior-m-80x80.jpg' width='80' height='80' alt='' /></li>
+											<li data-target='#myCarousel' data-slide-to='2' class=''><img src='uploads/photodune-1288999-house-interior-m-80x80.jpg' width='80' height='80' alt='' /></li>
+											<li data-target='#myCarousel' data-slide-to='3' class=''><img src='uploads/photodune-5129397-modern-bedroom-l1-80x80.jpg' width='80' height='80' alt='' /></li>
+											<li data-target='#myCarousel' data-slide-to='4' class=''><img src='uploads/photodune-2086373-modern-house-interior-m1-80x80.jpg' width='80' height='80' alt='' /></li>
+										</ol>
+								  </div>
+								</div>
+							</div><!-- /#property_slider_wrapper -->
+							<div id="single_property_meta_wrapper">
+								<div class="single-property-meta clearfix status-35-text">
+									<span class="meta-size"><i class="ico-size"></i><?php echo $this->data['area'] ?>M</span>
+									<span class="meta-bedroom"><i class="ico-bedroom"></i><span class="meta-hidden"> Bedrooms</span></span>
+									<span class="meta-bathroom"><i class="ico-bathroom"></i><?php //echo $this->data['bathroom'] ?><span class="meta-hidden"> Bathrooms</span></span>
+									<span class="meta-garage"><i class="ico-garage"></i><?php //echo $this->data['garages'] ?><span class="meta-hidden"> Garages</span></span>
+									<span class="meta-print visible-desktop"><i class="ico-print"></i>
+								<span class="print-hidden"><a href="javascript:window.print()">Print this page</a></span>
+									</span>
+									<span class="meta-status">For Sale</span>
+								</div>
 							</div>
-							<div class="row-fluid">
-								<?php if(isset($this->data['search']))echo $this->data['search'] ?>
-								</div><!-- /.property-listing -->
+							<div class="single-property-content-wrapper">
+								<header class="single-property-header">
+									<h3 class="single-property-title"><?php echo $this->data['title']; ?></h3>
+									<p class="single-property-address"><?php echo $this->data['location']; ?></p>
+								</header>
+								<div class="single-property-price">
+									<p><h3><sup class="price-curr">Rs</sup><?php echo $this->data['price'] ?>&nbsp;<span class="price-postfix"></span></h3></p>
 							</div>
-						</div><!-- /#archive-wrapper -->
-						<div class="property-pagination">
-							<ul class='page-numbers'>
-								<li><span class='page-numbers current'>1</span></li>
-								<li><a class='page-numbers' href='#'>2</a></li>
-								<li><a class="next page-numbers" href="#"><i class="icon-caret-right"></i></a></li>
-							</ul>
-						</div>				
+                                                                  <p><?php echo $this->data['description'] ?></p>
+			
+								</div>
+								<div class="single-property-map">
+									<div id="the_map" class="map-wrap clearfix">
+										<span class="map-label">Property Map</span>
+										<div id="property_map"></div>
+									</div>
+								</div>
+								<!-- Modal -->
+								<div id="contactAgent" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactAgentLabel" aria-hidden="true">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h3>
+											Send message to Agent Julianne Hough						
+										</h3>
+									</div>
+									<div class="modal-body">
+										<form id="contact-agent-form" action="#" method="post">
+											<div class="controls controls-row">
+												<input class="span6" name="name" type="text" placeholder="*Name " required />
+												<input class="span6" name="email" type="email" placeholder="*Email" required />
+											</div>
+											<div class="controls">
+												<textarea name="message" class="span12" rows="10" placeholder="*Message" required></textarea>
+											</div>
+											<div class="controls">
+												<input id="submit" class="btn btn-contact" type="submit" name="submit" value="Send" />
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</article>
 					</section><!-- #content -->
 					<section id="sidebar" class="span3" role="complementary">
+						<aside id="property_agent-2" class="widget property-agent">
+							<h3 class="widget-title">Agent Info</h3>
+							<div class="content-widget"><img width="150" height="150" src="uploads/agent-john-due-150x150.jpg" class="alignleft agent-widget wp-post-image" alt="agent-john-due" />
+							<div class="agent-widget-name">Julianne Hough</div>
+							<div class="agent-widget-phone"><i class="icon-phone"></i>+215 (800) 4567</div>
+							<div class="agent-widget-email"><i class="icon-envelope"></i>agent@envato.com</div>
+							<div class="clear"></div>
+							<div class="agent-widget-excerpt">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidu</div><p>&nbsp;</p>
+							<div class="agent-desc"><a role="button" data-toggle="modal" class="button button-search-widget" href="#contactAgent">Contact Agent</a></div></div><!-- /.content-widget -->
+						</aside>
 						<aside id="property-search-widget-2" class="widget widget-property-search">
 							<h3 class="widget-title">Property Search</h3>
 							<div class="content-widget">
@@ -231,9 +293,110 @@
 								</form>
 							</div><!-- /.content-widget -->
 						</aside>
-						
+						<aside id="wolf-twitter-widget-3" class="widget wolf-twitter-widget">
+							<h3 class="widget-title">Twitter Feed</h3>
+							<div class="content-widget">
+								<ul class="wolf-tweet-list">
+									<li>
+										<span class="wolf-tweet-time"><a href="#" target="_blank">about 7 hours  ago</a></span><span class="wolf-tweet-text">One of the best parts of <a href="#" target="_blank">#Movember</a>: seeing Bricey from <a href="#" target="_blank">#Envato</a> HQ dressed as Magnum P.I. @ Envato <a href="#" target="_blank">http://t.co/rkQK2JXaj7</a></span>
+									</li>
+									<li>
+										<span class="wolf-tweet-time"><a href="#" target="_blank">about 3 days  ago</a></span><span class="wolf-tweet-text">RT <a href="#" target="_blank">@justinfrench</a>: Envato is looking for a Front End Developer. Help us make all the things awesome. <a href="h#" target="_blank">http://t.co/XSvEjwFSDb</a></span>
+									</li>
+									<li>
+										<span class="wolf-tweet-time"><a href="#" target="_blank">about 3 days  ago</a></span><span class="wolf-tweet-text">RT <a href="#" target="_blank">@tutsplus</a>: We've just launched our brand new Tuts+ Blog! Read on for insight into the thoughts and people behind Tuts+ - <a href="#" target="_blank">http://t.co/vM6…</a></span>
+									</li>
+								</ul>
+							</div><!-- /.content-widget -->
+						</aside>
 					</section><!-- #sidebar -->
 				</div><!-- /#main -->
+				<div class="single-property-related ">
+					<span class="map-label">Related Property</span>
+					<div class="row-fluid">
+						<div class="span3">
+							<article class="property-item">
+								<div class="property-images">
+									<a href="property-single.html" title="60 Merrick Way, Miami"><img width="540" height="360" src="uploads/photodune-280630-home-m-540x360.jpg" class="status-28 wp-post-image" alt="60 Merrick Way, Miami" title="60 Merrick Way, Miami" /></a>
+									<div class="property-status status-28-text">For Rent</div>
+								</div><!-- /.property-images -->
+								<div class="property-attribute">
+									<h3 class="attribute-title"><a href="property-single.html" title="60 Merrick Way, Miami" >60 Merrick Way, Miami</a><i class="icon-heart"></i></h3>
+									<span class="attribute-city">Miami</span>
+									<div class="attribute-price">
+										<span class="attr-pricing"><sup class="price-curr">$</sup>5,000</span>
+									</div>
+								</div>
+								<div class="property-meta clearfix">
+									<div class="meta-size meta-block"><i class="ico-size"></i><span class="meta-text">280M</span></div>
+									<div class="meta-bedroom meta-block"><i class="ico-bedroom"></i><span class="meta-text">4</span></div>
+									<div class="meta-bathroom meta-block"><i class="ico-bathroom"></i><span class="meta-text">6</span></div>
+								</div>
+							</article>
+						</div>
+						<div class="span3">
+							<article class="property-item">
+								<div class="property-images">
+									<a href="property-single.html" title="401 Biscayne Boulevard, Miami"><img width="540" height="360" src="uploads/photodune-921892-new-homes-m-540x360.jpg" class="status-28 wp-post-image" alt="401 Biscayne Boulevard, Miami" title="401 Biscayne Boulevard, Miami" /></a>
+									<div class="property-status status-28-text">For Rent</div>
+								</div><!-- /.property-images -->
+								<div class="property-attribute">
+									<h3 class="attribute-title"><a href="property-single.html" title="401 Biscayne Boulevard, Miami" >401 Biscayne Boulevard, Miami</a><i class="icon-heart"></i></h3>
+									<span class="attribute-city">Miami</span>
+									<div class="attribute-price">
+										<span class="attr-pricing"><sup class="price-curr">$</sup>45,000</span>
+									</div>
+								</div>
+								<div class="property-meta clearfix">
+									<div class="meta-size meta-block"><i class="ico-size"></i><span class="meta-text">300M</span></div>
+									<div class="meta-bedroom meta-block"><i class="ico-bedroom"></i><span class="meta-text">5</span></div>
+									<div class="meta-bathroom meta-block"><i class="ico-bathroom"></i><span class="meta-text">7</span></div>
+								</div>
+							</article>
+						</div>
+						<div class="span3">
+							<article class="property-item">
+								<div class="property-images">
+									<a href="property-single.html" title="15421 Southwest 39th Terrace"><img width="540" height="360" src="uploads/photodune-1321874-winter-rowhouses-m-540x360.jpg" class="status-28 wp-post-image" alt="15421 Southwest 39th Terrace" title="15421 Southwest 39th Terrace" /></a>
+									<div class="property-status status-28-text">For Rent</div>
+								</div><!-- /.property-images -->
+								<div class="property-attribute">
+									<h3 class="attribute-title"><a href="property-single.html" title="15421 Southwest 39th Terrace" >15421 Southwest 39th Terrace</a><i class="icon-heart"></i></h3>
+									<span class="attribute-city">Miami</span>
+									<div class="attribute-price">
+										<span class="attr-pricing"><sup class="price-curr">$</sup>3,850</span>
+									</div>
+								</div>
+								<div class="property-meta clearfix">
+									<div class="meta-size meta-block"><i class="ico-size"></i><span class="meta-text">240 M</span></div>
+									<div class="meta-bedroom meta-block"><i class="ico-bedroom"></i><span class="meta-text">3</span></div>
+									<div class="meta-bathroom meta-block"><i class="ico-bathroom"></i><span class="meta-text">2</span></div>
+								</div>
+							</article>
+						</div>
+						<div class="span3">
+							<article class="property-item">
+								<div class="property-images">
+									<a href="property-single.html" title="1200 Anastasia Avenue, Coral Gables"><img width="540" height="360" src="uploads/photodune-277551-home-m-540x360.jpg" class="status-35 wp-post-image" alt="1200 Anastasia Avenue, Coral Gables" title="1200 Anastasia Avenue, Coral Gables" /></a>
+									<div class="property-status status-35-text">For Sale</div>
+								</div><!-- /.property-images -->
+								<div class="property-attribute">
+									<h3 class="attribute-title"><a href="http://demo.puriwp.com/realexpert/property/1200-anastasia-avenue-coral-gables/" title="1200 Anastasia Avenue, Coral Gables" >1200 Anastasia Avenue, Coral G...</a><i class="icon-heart"></i></h3>
+									<span class="attribute-city">Miami</span>
+									<div class="attribute-price">
+										<span class="attr-pricing"><sup class="price-curr">$</sup>5,600</span>
+									</div>
+								</div>
+								<div class="property-meta clearfix">
+									<div class="meta-size meta-block"><i class="ico-size"></i><span class="meta-text">200M</span></div>
+									<div class="meta-bedroom meta-block"><i class="ico-bedroom"></i><span class="meta-text">3</span></div>
+									<div class="meta-bathroom meta-block"><i class="ico-bathroom"></i><span class="meta-text">4</span></div>
+								</div>
+							</article>
+						</div>
+					</div>
+				</div><!-- /.single-propety-related -->
+		
 			</div><!-- /.container-->
 		</div><!-- /.content-wrapper -->
 		<section id="footer_widgets">
@@ -291,4 +454,4 @@
 				</div>
 			</div><!-- /.footer-widget-wrapper -->
 		</section><!-- #footer_widgets -->
-<?php require 'include/page/footer.php'; ?>
+	<?php require 'include/page/footer.php'; ?>

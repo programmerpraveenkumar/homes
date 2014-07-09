@@ -21,6 +21,7 @@
 	<link rel='stylesheet' id='default-style-css'  href='<?php  echo INCLUDE_FILE ?>library/style.css' type='text/css' media='all' />
 	<script type='text/javascript' src='<?php  echo INCLUDE_FILE ?>js/jquery3e5a.js?ver=1.10.2'></script>
 	<script type='text/javascript' src='<?php  echo INCLUDE_FILE ?>js/jquery-migrate.min1576.js?ver=1.2.1'></script>
+        <script type='text/javascript' src='<?php  echo INCLUDE_FILE ?>js/ajaxvalidation.js'></script>
 	
 	<style type="text/css">
 		@font-face

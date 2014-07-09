@@ -128,4 +128,9 @@
               }
             }
 
-
+function search_(){
+    var search=document.forms['search'];
+    alert(search['location'].value);
+    search.submit();
+    return FALSE;
+}
