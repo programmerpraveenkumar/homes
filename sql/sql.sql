@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `homes` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `homes`;
--- MySQL dump 10.13  Distrib 5.6.11, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: homes
 -- ------------------------------------------------------
@@ -161,6 +161,8 @@ elseif command='search' then
 call executequery('execute',concat('select * from builder where ',commandtext ));
 elseif command='get_id' then
 select * from builder where id=commandtext;
+elseif command='get_all' then
+select * from builder;
 elseif command='indexpage' then
 create temporary table if not exists data(
 location varchar(100),
@@ -189,4 +191,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-10  5:28:42
+-- Dump completed on 2014-07-10  8:12:02

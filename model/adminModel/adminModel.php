@@ -1,5 +1,6 @@
 <?php
 class adminModel extends database{
+    private $tmp;
     public function adminvalidation(){
                 $data=$this->DB_refreshdata($_POST);
         if($data['username']=='admin' && $data['password']=='admin'){
@@ -21,8 +22,12 @@ class adminModel extends database{
         
     }
      public function buildinglist(){
-    
-        return array("title"=>"title of the page    ","data"=>"data of the page");
+    $data=$this->storedProcedure(" sp_build('get_all','')");
+    $this->tmp='<div class="grid"><div class="gridrow"><span  class="gridcell">Name</span><span  class="gridcell">Edit</span><span  class="gridcell">Add Photos</span></div>';
+        while($res=$data->fetch_object()){
+        $this->tmp.='<div class="gridrow"><span class="gridcell">'.$res->title.'</span><span class="gridcell">Edit</span><span class="gridcell"><a href="'.ADMIN.'build/addphtots?id='.$res->id.'">Add Photos</a></span></div>';
+        }
+        return array("title"=>"title of the page    ","data"=>$this->tmp.'</div>');
     }
     public function storetype(){
      $data=$this->DB_refreshdata($_POST);

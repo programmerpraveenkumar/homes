@@ -18,6 +18,10 @@ class build extends controller{
          $this->view->data=$this->model->call('build','buildmodelform');
         $this->_localrender();
     }
+    public function addphtots(){
+        $this->view->data=$this->model->call('build','buildaddphtosForm');
+        $this->_localrender();
+    }
     public function addstore(){
         $this->model->call('build','buildstore');
     }

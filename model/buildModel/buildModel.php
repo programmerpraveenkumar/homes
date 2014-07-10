@@ -92,6 +92,10 @@ class buildModel extends database{
     private function _getType(){
       return  $this->buildDriver()->option();
     }
+    public function buildaddphtosForm(){
+        $data='<form name="buildphoto" enctype="multipart/form-data" class="form" action="" method="post" ><div class="separator"><label class="label">Choose Photos</label><input class="textbox" type="file" name="image[]" multiple="mulitple"/><span id="error_image[]"></span></div><div class="separator"><label class="label"></label><input class="textbox" value="add Photo" onclick="ajaxvalidation({\'name\':\'buildphoto\',\'type\':\'submit\'},{\'1f\':[\'image[]\',\'file\']})" type="button" name="sub_"/></div></form>';
+        return array("title"=>"title of the page","data"=>$data);
+    }
 
     /*client side*/
     public function search(){
