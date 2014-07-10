@@ -66,8 +66,12 @@ class buildModel extends database{
         $this->DB_adminredirect('build/add?msg=add_err');
         
     }
+    public function imagestoreforbuild(){
+        
+            $this->imageStore('image');
+    }
     private function imageStore($name){
-        $id=$_GET['id'];
+        $id=$_POST['id'];
         switch($name){
             case 'floor':
             $data=array("name"=>"floor","path"=>"floor");
@@ -75,17 +79,24 @@ class buildModel extends database{
             case '3d':
             $data=array("name"=>"3d","path"=>"3d");
             break;
+            case 'image':
+            $data=array("name"=>"image","path"=>"images","redirect"=>"build/addphtots?msg=ok");
+            break;
             default :
             return false;            
         }
-        $path=$data['path'].'/'.$id.'/';
-        if(!file_exists('photo/'.$path)){
-            mkdir($path);            
+        $path=$data['path'].'/'.$id.'/';       
+        if(!file_exists('photo/'.$path)){            
+           
+            mkdir('photo/'.$path);            
         }
-        $count=count($_FILES['images']['name']);
+        $count=count($_FILES['image']['name']);
+        echo $count;
         for($i=0;$i<$count;$i++){
-            $this->moveImage($path.'/'.uniqid().'.jpg',$_FILES['images']['tmp_name'][$i]);
+            $this->moveImage($path.'/'.uniqid().'.jpg',$_FILES['image']['tmp_name'][$i]);
         }
+        $this->DB_adminredirect($data['redirect']);
+        return false;
         die('last line');
     }
     
@@ -93,7 +104,7 @@ class buildModel extends database{
       return  $this->buildDriver()->option();
     }
     public function buildaddphtosForm(){
-        $data='<form name="buildphoto" enctype="multipart/form-data" class="form" action="" method="post" ><div class="separator"><label class="label">Choose Photos</label><input class="textbox" type="file" name="image[]" multiple="mulitple"/><span id="error_image[]"></span></div><div class="separator"><label class="label"></label><input class="textbox" value="add Photo" onclick="ajaxvalidation({\'name\':\'buildphoto\',\'type\':\'submit\'},{\'1f\':[\'image[]\',\'file\']})" type="button" name="sub_"/></div></form>';
+        $data='<form name="buildphoto" enctype="multipart/form-data" class="form" action="'.ADMIN.'build/storeimage" method="post" ><input type="hidden" name="id" value="'.$_GET["id"].'" /><div class="separator"><label class="label">Choose Photos</label><input class="textbox" type="file" name="image[]" multiple="mulitple"/><span id="error_image[]"></span></div><div class="separator"><label class="label"></label><input class="textbox" value="add Photo" onclick="ajaxvalidation({\'name\':\'buildphoto\',\'type\':\'submit\'},{\'1f\':[\'image[]\',\'file\'],\'ajax\':[\'ajax\',\'ajax\']})" type="button" name="sub_"/></div></form>';
         return array("title"=>"title of the page","data"=>$data);
     }
 
